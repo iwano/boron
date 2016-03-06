@@ -5,4 +5,4 @@ module.exports = {
     FadeModal: require('./FadeModal'),
     ScaleModal: require('./ScaleModal'),
     OutlineModal: require('./OutlineModal'),
-}
+};

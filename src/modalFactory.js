@@ -38,7 +38,7 @@ module.exports = function(animation){
             return {
                 willHidden: false,
                 hidden: true
-            }
+            };
         },
 
         hasHidden: function(){
@@ -175,4 +175,4 @@ module.exports = function(animation){
             window.removeEventListener("keydown", this.listenKeyboard, true);
         }
     });
-}
+};

@@ -67,7 +67,7 @@ module.exports = modalFactory({
             transform: "translate3d(-50%, -50%, 0)",
             top: "50%",
             left: "50%"
-        })
+        });
     },
     getBackdropStyle: function(willHidden) {
         return appendVendorPrefix({
@@ -92,6 +92,6 @@ module.exports = modalFactory({
             animationFillMode: 'forwards',
             animationName: willHidden ? hideContentAnimation : showContentAnimation,
             animationTimingFunction: (willHidden ? hideAnimation : showAnimation).animationTimingFunction
-        })
+        });
     }
 });

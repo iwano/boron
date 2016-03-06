@@ -102,7 +102,7 @@ module.exports = modalFactory({
             animationFillMode: 'forwards',
             animationName: willHidden ? hideModalAnimation : showModalAnimation,
             animationTimingFunction: (willHidden ? hideAnimation : showAnimation).animationTimingFunction
-        })
+        });
     },
     getBackdropStyle: function(willHidden) {
         return appendVendorPrefix({
@@ -128,6 +128,6 @@ module.exports = modalFactory({
             animationDelay: '0.25s',
             animationName: showContentAnimation,
             animationTimingFunction: (willHidden ? hideAnimation : showAnimation).animationTimingFunction
-        })
+        });
     }
 });
