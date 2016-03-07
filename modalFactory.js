@@ -47,13 +47,21 @@ module.exports = function(animation){
 
         addTransitionListener: function(node, handle){
             if (node) {
+              var callbackCalled = false;
               var endListener = function(e) {
+                callbackCalled = true;
                   if (e && e.target !== node) {
                       return;
                   }
                   transitionEvents.removeEndEventListener(node, endListener);
                   handle();
               };
+              var callbackFallback = function() {
+                if (!callbackCalled) {
+                  endListener();
+                }
+              };
+              window.setTimeout(callbackFallback, 501);
               transitionEvents.addEndEventListener(node, endListener);
             }
         },
