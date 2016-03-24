@@ -37,6 +37,7 @@ module.exports = function(animation){
         getInitialState: function(){
             return {
                 willHidden: false,
+                willSubmit: false,
                 hidden: true
             };
         },
@@ -78,12 +79,13 @@ module.exports = function(animation){
             if (hidden) return null;
 
             var willHidden = this.state.willHidden;
+            var willSubmit = this.state.willSubmit;
             var animation = this.props.animation;
-            var modalStyle = animation.getModalStyle(willHidden);
-            var backdropStyle = animation.getBackdropStyle(willHidden);
-            var contentStyle = animation.getContentStyle(willHidden);
-            var ref = animation.getRef(willHidden);
-            var sharp = animation.getSharp && animation.getSharp(willHidden);
+            var modalStyle = animation.getModalStyle(willHidden, willSubmit);
+            var backdropStyle = animation.getBackdropStyle(willHidden, willSubmit);
+            var contentStyle = animation.getContentStyle(willHidden, willSubmit);
+            var ref = animation.getRef(willHidden, willSubmit);
+            var sharp = animation.getSharp && animation.getSharp(willHidden, willSubmit);
 
             // Apply custom style properties
             if (this.props.modalStyle) {
@@ -109,7 +111,7 @@ module.exports = function(animation){
 
             var backdrop = this.props.backdrop? React.createElement("div", {style: backdropStyle, onClick: this.props.closeOnClick? this.handleBackdropClick: null}): undefined;
 
-            if(willHidden) {
+            if(willHidden || willSubmit) {
                 var node = this.refs[ref];
                 this.addTransitionListener(node, this.leave);
             }
@@ -157,6 +159,14 @@ module.exports = function(animation){
 
             this.setState({
                 willHidden: true
+            });
+        },
+
+        submit: function(){
+            if (this.hasHidden()) return;
+
+            this.setState({
+                willSubmit: true
             });
         },
 
